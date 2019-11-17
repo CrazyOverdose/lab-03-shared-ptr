@@ -15,15 +15,6 @@ TEST(shared_ptr, equality1)
     EXPECT_EQ(*(b.get()),56.4);
 }
 
-TEST(shared_ptr, equality2)
-{
-    SharedPtr a(new bool{true});
-
-    SharedPtr b = a;
-
-    EXPECT_EQ(*(b.get()),true);
-}
-
 TEST(shared_ptr, reset)
 {
     SharedPtr a{new int{5}};
