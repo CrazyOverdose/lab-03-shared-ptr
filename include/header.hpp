@@ -77,7 +77,7 @@ public:
     {
         bool flag = true;
 
-        if (count == nullptr)
+        if (object == nullptr)
             flag = false;
 
         return flag;
