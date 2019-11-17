@@ -6,7 +6,7 @@
 #include <string>
 
 
-TEST(shared_ptr, equality)
+TEST(shared_ptr, equality1)
 {
     SharedPtr a(new double{56.4});
 
@@ -14,7 +14,6 @@ TEST(shared_ptr, equality)
 
     EXPECT_EQ(*(b.get()),56.4);
 }
-
 
 TEST(shared_ptr, reset)
 {

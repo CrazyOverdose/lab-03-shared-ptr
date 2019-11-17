@@ -46,30 +46,20 @@ public:
 
     auto operator=(const SharedPtr& r) -> SharedPtr&
     {
-        if (this == &r)
-            return *this;
-        else {
             this->~SharedPtr();
             count = r.count;
             object = r.object;
-            //(*count)++;
             return *this;
-        }
     }
     auto operator=(SharedPtr&& r) -> SharedPtr&
     {
-        if (this == &r)
-            return *this;
-        else {
             this->~SharedPtr();
             count = r.count;
             object = r.object;
 
             r.count = nullptr;
             r.object = nullptr;
-            //(*count)++;
             return *this;
-        }
     }
 
     // проверяет, указывает ли указатель на объект
