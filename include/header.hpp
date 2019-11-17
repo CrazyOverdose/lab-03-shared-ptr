@@ -49,6 +49,7 @@ public:
             this->~SharedPtr();
             count = r.count;
             object = r.object;
+            (*count)++;
             return *this;
     }
     auto operator=(SharedPtr&& r) -> SharedPtr&
