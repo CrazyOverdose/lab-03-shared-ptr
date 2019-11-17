@@ -3,58 +3,46 @@
 #include <gtest/gtest.h>
 
 #include "header.hpp"
+#include <string>
 
-TEST(shared_ptr, ItemInsideCostructor)
+
+TEST(shared_ptr, equality)
 {
-    SharedPtr ptr(new int{5});
+    SharedPtr a(new double{56.4});
 
-    EXPECT_EQ(*(ptr.get()),5);
-    EXPECT_EQ(bool(ptr),true);
-    EXPECT_EQ(ptr.use_count(),1);
+    SharedPtr b = std::move(a);
+
+    EXPECT_EQ(*(b.get()),56.4);
 }
 
-TEST(shared_ptr, OperatorPrisvaivania2)
+TEST(shared_ptr, swap)
 {
-    SharedPtr ptr(new int{5});
+    SharedPtr a{new bool{true}};
+    SharedPtr b{new bool{false}};
 
-    SharedPtr ptr2 = std::move(ptr);
+    a.swap(b);
 
-    EXPECT_EQ(*(ptr2.get()),5);
-    EXPECT_EQ(bool(ptr2),true);
-    EXPECT_EQ(ptr2.use_count(),1);
+    EXPECT_EQ(*(b.get()),true);
+    EXPECT_EQ(bool(b),true);
+    EXPECT_EQ(b.use_count(),1);
+
+    EXPECT_EQ(*(a.get()),false);
+    EXPECT_EQ(bool(a),true);
+    EXPECT_EQ(a.use_count(),1);
 }
 
-
-TEST(shared_ptr, SWAP)
+TEST(shared_ptr, use_count)
 {
-    SharedPtr ptr{new int{5}};
-    SharedPtr ptr2{new int{105}};
-
-    ptr.swap(ptr2);
-
-    EXPECT_EQ(*(ptr2.get()),5);
-    EXPECT_EQ(bool(ptr2),true);
-    EXPECT_EQ(ptr2.use_count(),1);
-
-    EXPECT_EQ(*(ptr.get()),105);
-    EXPECT_EQ(bool(ptr),true);
-    EXPECT_EQ(ptr.use_count(),1);
+    SharedPtr a{new double {32.4}};
+    EXPECT_EQ(a.use_count(),1);
 }
 
-TEST(shared_ptr, Count)
+TEST(SharedPtr, pointer)
 {
-    int a = rand();
-    SharedPtr ptr{new int {a}};
-    EXPECT_EQ(ptr.use_count(),1);
-}
+    auto a = new string{"Taehyung"};
+    auto b = SharedPtr<string>{a};
 
-TEST(SharedPtr, FromPointer)
-{
-    auto sourcePtr = new int{789};
-    auto ptr = SharedPtr<int>{sourcePtr};
-
-    EXPECT_EQ(static_cast<bool>(ptr), true);
-    EXPECT_EQ(ptr.use_count(), 1);
-    EXPECT_EQ(ptr.get(), sourcePtr);
-    EXPECT_EQ(*ptr, 789);
+    EXPECT_EQ(b.use_count(), 1);
+    EXPECT_EQ(b.get(), a);
+    EXPECT_EQ(*b, "Taehyung");
 }
