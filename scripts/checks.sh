@@ -20,3 +20,4 @@ CMAKE_OPTS="$CMAKE_LINKER_OPTS $CMAKE_CONFIG_OPTS $CMAKE_TOOLCHAIN_OPTS"
 cmake -H. -B_builds/sanitize-thread-cxx17 $CMAKE_OPTS
 cmake --build _builds/sanitize-thread-cxx17
 ./_builds/sanitize-thread-cxx17/tests
+
