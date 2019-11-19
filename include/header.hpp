@@ -11,18 +11,18 @@ class SharedPtr {
 
 private:
     T* object = nullptr;
-    std::atomic_size_t *count = nullptr;
+    std::atomic_uint *count = nullptr;
 
 public:
     SharedPtr()
     {
-        count = new std::atomic_size_t (1);
+        count = new std::atomic_uint {1};
     }
 
     explicit SharedPtr(T* ptr)
     {
         object = ptr;
-        count = new std::atomic_size_t (1);
+        count = new std::atomic_uint {1};
     }
 
     SharedPtr(const SharedPtr& r)
