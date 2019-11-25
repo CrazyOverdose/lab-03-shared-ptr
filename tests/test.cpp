@@ -25,6 +25,17 @@ TEST(shared_ptr, equality2)
     EXPECT_EQ(*(b.get()),65);
 }
 
+TEST(shared_ptr, constructor)
+{
+    SharedPtr <int> b;
+
+    SharedPtr a(new int{53});
+
+    b = a;
+
+    EXPECT_EQ(*(b.get()),53);
+}
+
 TEST(shared_ptr, reset)
 {
     SharedPtr a{new int{5}};
