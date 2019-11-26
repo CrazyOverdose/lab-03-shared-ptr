@@ -109,8 +109,7 @@ public:
     auto use_count() const -> size_t
     {
        return *count;
-    }
-};
+    } };
 
 
 
